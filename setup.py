@@ -8,13 +8,17 @@ from shutil import rmtree
 from setuptools import find_packages, setup, Command
 
 # Package meta-data.
+# Forked from David Karimeddini's https://github.com/dskrad/mp3chaps
 NAME = 'mp3chaps'
-VERSION = '0.4'
+VERSION = '0.5'
 KEYWORDS = 'mp3 chapters'
 DESCRIPTION = 'tool for inserting chapter marks in mp3 files'
-URL = 'https://github.com/dskrad/mp3chaps'
-EMAIL = 'dskcl1@gmail.com'
-AUTHOR = 'David Karimeddini'
+URL = 'https://github.com/Olivetti/mp3chaps'
+EMAIL = 'realolivetti@gmail.com'
+AUTHOR = 'Olivetti'
+ORIGINAL_URL = 'https://github.com/dskrad/mp3chaps'
+ORIGINAL_EMAIL = 'dskcl1@gmail.com'
+ORIGINAL_AUTHOR = 'David Karimeddini'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
@@ -30,7 +34,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 # Import the README and use it as the long-description.
 # Note: this will only work if 'README.rst' is present in your MANIFEST.in file!
-with io.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
+with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
   long_description = '\n' + f.read()
 
 
