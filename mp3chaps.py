@@ -4,13 +4,13 @@
 """
 Usage:
   mp3chaps.py -h
-  mp3chaps.py ( -l | -i | -r ) <filename>
+  mp3chaps.py ( -l | -i | -r ) <file.mp3>
 
 Options:
   -h  Show this help text
-  -l  List chapters in <filename>
-  -i  Import chapters into <filename> (from <filename[w/o.ext]>.chp)
-  -r  Remove chapters from <filename>
+  -l  List   chapters in   <file.mp3>
+  -i  Import chapters into <file.mp3> from <file.chp>
+  -r  Remove chapters from <file.mp3>
 
 """
 
