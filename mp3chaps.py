@@ -84,8 +84,8 @@ def add_chapters(tag, fname, total_length):
 
 def main():
   'Main'
-  args = docopt(__doc__, version="mp3chaps 0.5")
-  fname = args["<filename>"]
+  args = docopt(__doc__, version='mp3chaps v0.5') # v='mp3chaps v0.5'
+  fname = args['<file.mp3>']
   tag = Tag()
   tag.parse(fname)
   audioFile = core.load(fname)

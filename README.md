@@ -13,7 +13,7 @@ forked from [David Karimeddini's](https://github.com/dskrad/mp3chaps)
 1. [Download & unpack](https://github.com/Olivetti/mp3chaps/releases/latest/download/mp3chaps.tar.gz)
 2. Execute           `python setup.py`
 
--3. Original version `pip install mp3chaps`
+-- Original (dskrad) `pip install mp3chaps` (not this version)
 
 ### Usage
 - mp3chaps[.py] -h
