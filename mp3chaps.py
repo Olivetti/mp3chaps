@@ -3,21 +3,24 @@
 
 """
 Usage:
-  mp3chaps.py -h
   mp3chaps.py ( -l | -i | -r ) <file.mp3>
+  mp3chaps.py -h
+  mp3chaps.py -V
 
 Options:
-  -h  Show this help text
   -l  List   chapters in   <file.mp3>
   -i  Import chapters into <file.mp3> from <file.chp>
   -r  Remove chapters from <file.mp3>
-
+  -h  Show this help text
+  -V  Show version
 """
 
-from eyed3.id3 import Tag
-from eyed3 import core
-from docopt import docopt
+_version = 'v0.5'
+
 import os
+from docopt	import docopt
+from eyed3	import core
+from eyed3.id3	import Tag
 
 def to_millisecs(time):
   h, m, s = [float(x) for x in time.split(':')]
@@ -58,14 +61,14 @@ def add_chapters(tag, fname, total_length):
   total_length_ms = total_length * 1000
   #print(chaps, total_length_ms)
   tag.setTextFrame(b'TLEN', str(int(total_length_ms)))
-  chaps_ = []
+  _chaps = []
   for i, chap in enumerate(chaps):
     if i < (len(chaps)-1):
-      chaps_.append( ((chap[0], chaps[i+1][0]), chap[1]) )
-  chaps_.append( ((chaps[-1][0], total_length_ms), chaps[-1][1]) )
+      _chaps.append( ((chap[0], chaps[i+1][0]), chap[1]) )
+  _chaps.append( ((chaps[-1][0], total_length_ms), chaps[-1][1]) )
   index = 0
   child_ids = []
-  for chap in chaps_:
+  for chap in _chaps:
     element_id = 'ch{:02}'.format(index).encode()
     times, title = chap
     new_chap = tag.chapters.set(element_id, times)
@@ -84,14 +87,17 @@ def add_chapters(tag, fname, total_length):
 
 def main():
   'Main'
-  args = docopt(__doc__, version='mp3chaps v0.5') # v='mp3chaps v0.5'
+  args = docopt(__doc__, version=_version)
+  if args["-V"]:
+    print(__file__.rsplit("/", 1)[1].split('.')[0], _version)
+    raise SystemExit()
   fname = args['<file.mp3>']
   tag = Tag()
   tag.parse(fname)
   audioFile = core.load(fname)
   total_length = audioFile.info.time_secs
   print('Name of file:', fname)
-  print('Total length:', total_length)
+  print('Total length:', total_length, 'secs (', round(total_length/60), 'mins )')
   print('Num of chaps:', len(tag.chapters))
   if args["-l"]:
     list_chaps(tag)
